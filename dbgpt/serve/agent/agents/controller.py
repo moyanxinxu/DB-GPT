@@ -17,6 +17,7 @@ from dbgpt.agent import (
     AgentContext,
     AgentMemory,
     AutoPlanChatManager,
+    BussineseAutoPlanChatManager,
     ConversableAgent,
     DefaultAWELLayoutManager,
     GptsMemory,
@@ -495,6 +496,11 @@ class MultiAgents(BaseComponent, ABC):
                     )  # TODO
                 elif TeamMode.NATIVE_APP == team_mode:
                     raise ValueError(f"Native APP chat not supported!")
+                elif TeamMode.CUSTOM_PLAN == team_mode:
+                    if not gpts_app.details or len(gpts_app.details) < 0:
+                        raise ValueError("APP exception no available agent！")
+                    llm_config = employees[0].llm_config
+                    manager = BussineseAutoPlanChatManager()
                 else:
                     raise ValueError(f"Unknown Agent Team Mode!{team_mode}")
                 manager = (

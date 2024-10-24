@@ -56,6 +56,16 @@ class TeamMode(Enum):
         "Quickly create apps based on existing native app templates",
     )
 
+    CUSTOM_PLAN = (
+        "custom_plan",
+        "自定义规划模式",
+        "custom plan",
+        "自定义规划",
+        "custom plan",
+        "自定义规划",
+        "custom plan",
+    )
+
     def to_dict(self):
         return {
             "name": self.name,
